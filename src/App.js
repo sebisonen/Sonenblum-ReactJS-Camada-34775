@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import "./assets/Fonts.css"
 import './App.css';
-
+import Navbar from "./components/Navbar/Navbar"
+import NavbarDrip from "./components/NavbarDrip/NavbarDrip"
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 function App() {
+
+   let mensaje= "Falta 1 mes para el lanzamiento de esta pagina"
+   
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar backgroundColor="#A020F0"/>
+        <NavbarDrip/>
+      
+      <ItemListContainer font={"Libre Franklin"} greeting={mensaje}/>
+      
     </div>
   );
 }
