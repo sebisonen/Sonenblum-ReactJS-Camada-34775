@@ -1,20 +1,30 @@
 import "./assets/Fonts.css"
 import './App.css';
 import Navbar from "./components/Navbar/Navbar"
-import NavbarDrip from "./components/NavbarDrip/NavbarDrip"
-import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
+import ItemDetailContainer from "./components/Products/Detail/ItemDetailContainer";
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Cart from "./components/Cart/Cart";
+import ProductsMain from "./components/Products/ProductsMain";
+import EnDesarrollo from './components/EnDesarrollo'
+
 function App() {
 
-   let mensaje= "Falta 1 mes para el lanzamiento de esta pagina"
-   
   return (
-    <div className="App">
-      <Navbar backgroundColor="#A020F0"/>
-        <NavbarDrip/>
-      
-      <ItemListContainer font={"Libre Franklin"} greeting={mensaje}/>
-      
-    </div>
+    <BrowserRouter>
+      <Navbar/>
+
+      <Routes>
+        {/* <Route path='/products/category/All' element={<ProductsMain/>}/> */}
+        <Route path='/products/item/:id' element={<ItemDetailContainer/>}/>
+        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/products/category/:categoryName' element={<ProductsMain/>}/>
+        <Route path="/home" element={<EnDesarrollo/>}/>
+        <Route path="/info" element={<EnDesarrollo/>}/>
+        <Route path="/contact" element={<EnDesarrollo/>}/>
+        <Route path ='/error' element={<h1>Error</h1>}/>{/*Crear error page*/}
+        <Route path='+' element={<h1>Page not found</h1>}/>{/*Este path es para que cuando alguien mete mano en el url y este no existe te tire X componente*/}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
