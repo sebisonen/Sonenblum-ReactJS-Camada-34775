@@ -3,7 +3,7 @@ import React from 'react'
 const EnDesarrollo = () => {
   return (
     <div style={{fontSize:"50px"}}>
-        EnDesarrollo
+        En desarrollo
     </div>
   )
 }

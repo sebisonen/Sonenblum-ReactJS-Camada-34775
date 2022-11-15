@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const CartWidget=()=>{
 
     return(
-        <Link to='/cart' element={<Cart/>}>
+        <Link style= {{color: "white"}}to='/cart' element={<Cart/>}>
             <FontAwesomeIcon icon={faShoppingCart}/>
             <span>7</span>
         </Link>

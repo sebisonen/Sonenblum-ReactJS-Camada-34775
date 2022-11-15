@@ -1,0 +1,13 @@
+.shopOrderForm{
+    width: 50vw;
+    border-style: groove;
+}
+.shopOrderForm form{
+    display: flex;
+    /* flex-direction: column; */
+}
+
+/* .shopOrderForm form input{
+    width: 50%;
+    padding: 2rem;
+} */

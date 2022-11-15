@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import "../products.css"
 
-const ItemCount = ({product, initial}) =>{
-    const {stock} = product
-    let [count, setCount] = useState(initial)
+const ItemCount = (props) =>{
+    const {stock} = props.product
+    let [count, setCount] = useState(props.initial)
     let increment = () =>{
         setCount(count+1)
     }
@@ -17,7 +17,7 @@ const ItemCount = ({product, initial}) =>{
                 <p style={{margin: "5px"}}>{count}</p>
                 <button disabled={count===stock}type= "button" className="count-btn" onClick={increment}>+</button>
             </div>
-            <button disabled={count===0} className="addProduct-btn">Agregar al carrito</button>
+            <button disabled={count===0} className="addProduct-btn" onClick={()=>props.onAdd(count)}>Agregar al carrito</button>
         </div>
     )
     

@@ -5,7 +5,7 @@ const Categories = () => {
     <div className="productCategories">
         <NavLink to='/products/category/All'> Todos</NavLink>
         <NavLink to='/products/category/Tops'> Tops</NavLink>
-        <NavLink to='/products/category/Corpinos'>Corpiños</NavLink>
+        <NavLink to='/products/category/Buzos'>Buzos</NavLink>
         <NavLink to='/products/category/Corsets'>Corsets</NavLink>
     </div>
   )

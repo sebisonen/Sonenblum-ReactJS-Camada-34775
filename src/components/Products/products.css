@@ -2,7 +2,6 @@
 /* Product Main */
 .productsMain{
     display:flex;
-    width: 100vw;
     
 }
 .productCategories{
@@ -12,11 +11,11 @@
     justify-content: center;
     font-family: "Libre Franklin";
     font-weight:500;
-    width: 15vw;
-    padding-left: 6vw;
-    /* border-style: dashed; */
+    width: 15%;
+    padding-left: 5vw;
     font-size: 1.2rem;
     height:75vh;
+    gap: 20px;
 }
 .singleCategory{
     margin:10px
@@ -24,33 +23,40 @@
 .productCategories .active{
     color: #A020F0;
 }
-.itemListContainer{
-    width:auto;
-}
+
 
 .itemList{
     display:flex;
+    width: auto;
     justify-content:space-between;
+    gap: 10vh;
     flex-wrap: wrap;
+    padding: 10vh;
+}
+article a:hover{
+    color:#A020F0
+
 }
 
 /* Item detail buttons */
 .addProduct-btn{
     height:auto;
-    background-color: #e1ff17;
+    background-color: #A020F0;
+    color: white ;
     border: none;
-    color: #A020F0;
     font-family: "Libre Franklin";
     font-size: 1 rem;
-    font-weight: 900;
+    font-weight: 500;
     border-radius: 25px
 }
 
 .count-btn{
+    background-color: #A020F0;
+    color: white ;
     height:30%;
-    background-color: #e1ff17;
+    /* background-color: #e1ff17;
+    color: #A020F0; */
     border: none;
-    color: #A020F0;
     font-family: "Libre Franklin";
     font-size: 1 rem;
     font-weight: 900;
