@@ -1,0 +1,26 @@
+.cartDetail *{
+    font-family: "Kanit";
+}
+article.cartDetail{
+    margin: 10vh 5vw;
+    padding: 0 5vw;
+    width:auto;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-style: groove;
+    
+}
+.cartDetail img{
+    height:100%; 
+    width:10vw;
+    object-fit: contain;
+    
+}
+
+.cartDetail p{
+   
+    width: 20%;
+    text-align: center;
+}

@@ -3,7 +3,7 @@ import CartWidget from "../CartWidget/CartWidget"
 import {Link, NavLink} from 'react-router-dom'
 const Navbar=()=>{
     return(
-        <nav>
+        <nav >
             <div></div>
             <ul>
                 <NavLink to='/home'>INICIO</NavLink>
