@@ -7,7 +7,12 @@ const Item = ({product}) => {
       <img  style={{height:"25rem", width:"100%", objectFit:"contain"}}src={product.img} alt={product.title} />
       <p style={{fontFamily:"Kanit"}}>{product.title}</p>
       <p style={{fontFamily:"Kanit"}}>{`$${product.price}`}</p>
-      <Link style={{fontFamily:"Kanit"}} to={`/products/item/${product.id}`}>Ver detalle</Link>
+      
+      {
+        product.stock===0?
+        <div>No hay stock</div>:
+        <Link style={{fontFamily:"Kanit"}} to={`/products/item/${product.id}`}>Ver detalle</Link>
+      }
     </article>
   )
 }

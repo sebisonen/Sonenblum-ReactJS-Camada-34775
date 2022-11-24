@@ -6,7 +6,7 @@ export const productsMock = [
         category: 'Corsets',
         img: 'https://i.pinimg.com/564x/f7/b0/9a/f7b09a543d970b94be6181267f6e970f.jpg',
         id: 1,
-        description: "Corpiño Hilton: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error minus corrupti harum! Non laborum id, iste eligendi consectetur corporis ut. Dolore repellat libero cum voluptates deleniti. Molestiae et nulla ratione?"
+        description: "Corset Hilton: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error minus corrupti harum! Non laborum id, iste eligendi consectetur corporis ut. Dolore repellat libero cum voluptates deleniti. Molestiae et nulla ratione?"
     },
     {
         title: 'Buzo Wave',

@@ -1,16 +1,27 @@
-.cartDetail *{
+.cartLayout *{
     font-family: "Kanit";
 }
 article.cartDetail{
-    margin: 10vh 5vw;
-    padding: 0 5vw;
     width:auto;
     height: 30vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
     border-style: groove;
+    padding: 2rem;
     
+    
+}
+.cartLayout{
+    margin: 10vh 5vw;
+    padding: 0 5vw;
+    
+}
+.cartLayout h2{
+    text-align: end;
+}
+.cartLayout .deleteCart{
+    text-align: end;
 }
 .cartDetail img{
     height:100%; 
@@ -24,3 +35,18 @@ article.cartDetail{
     width: 20%;
     text-align: center;
 }
+
+
+.checkout-btn{
+    margin:5px;
+    background-color: #3e1752;
+     }
+     .checkout-btn:hover{
+        background-color: #39FF14}
+    .checkout-btn:disabled{
+        background-color: #3e1752d3;
+    }
+    .checkout-btn:disabled:hover{
+        background-color: #3e1752d3;
+    }
+

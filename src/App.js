@@ -9,14 +9,11 @@ import EnDesarrollo from './components/EnDesarrollo'
 import Form from "./components/Form/Form";
 import Provider from "./context/CartContext";
 
-
 function App() {
-  
-  
   return (
     <Provider > 
       <BrowserRouter >
-        <Navbar style={{overflowY:"scroll"}}/>
+        <Navbar />
         <Routes>
           {/* <Route path='/products/category/All' element={<ProductsMain/>}/> */}
           <Route path='/products/item/:id' element={<ItemDetailContainer/>}/>
@@ -28,7 +25,7 @@ function App() {
           <Route path="/contact" element={<EnDesarrollo/>}/>
           <Route path ='/error' element={<h1>Error</h1>}/>{/*Crear error page*/}
           <Route path='*' element={<h1>Page not found</h1>}/>{/*Este path es para que cuando alguien mete mano en el url y este no existe te tire X componente*/}
-          <Route path="/form" element={<Form/>}/>
+          <Route path="/checkout" element={<Form/>}/>
         </Routes>
       </BrowserRouter>
     </Provider>

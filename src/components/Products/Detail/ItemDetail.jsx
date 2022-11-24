@@ -11,7 +11,12 @@ const ItemDetail = ({product}) => {
       addToCart(quantity, product)
   }
   const cartProduct = findInCart(product.id)
- 
+  if(product.title===undefined){
+    return(
+      <h1>Page not found</h1>
+    )    
+  }
+
   return (
     <div style={{display:"flex", alignItems:"center"}} >
         
@@ -20,7 +25,18 @@ const ItemDetail = ({product}) => {
             <h2 style={{alignSelf:"end"}}>{product.title}</h2>
             <p style={{textAlign: "end"}}>{product.description}</p>
             <div style={{alignSelf:"end"}} >
-                <ItemCount onAdd= {onAdd} product={product}  initial={isInCart(product.id)?cartProduct.quantity:1}/>
+             {
+              product.stock===0?
+              <div style={{padding: "10px",
+                margin: "0",
+                color: "#ffffff",
+                backgroundColor: "#aa66ccb0",
+                borderRadius: "3px",
+                fontFamily: "Libre Franklin",
+                fontSize: "1 rem"}}>No hay stock</div>:
+              <ItemCount onAdd= {onAdd} product={product}  initial={isInCart(product.id)?cartProduct.quantity:1}/>
+             }
+                
             </div>
         </div>
    

@@ -34,33 +34,27 @@
     padding: 10vh;
 }
 article a:hover{
-    color:#A020F0
+    color:#A020F0;
+    transition: color 0.5s;
 
 }
 
 /* Item detail buttons */
 .addProduct-btn{
     height:auto;
+    font-weight: 500;
+    border-radius: 25px;
     background-color: #A020F0;
     color: white ;
-    border: none;
-    font-family: "Libre Franklin";
-    font-size: 1 rem;
-    font-weight: 500;
-    border-radius: 25px
 }
 
 .count-btn{
+    height:30%;
+    font-weight: 900;
+    border-radius: 15px;
+
     background-color: #A020F0;
     color: white ;
-    height:30%;
-    /* background-color: #e1ff17;
-    color: #A020F0; */
-    border: none;
-    font-family: "Libre Franklin";
-    font-size: 1 rem;
-    font-weight: 900;
-    border-radius: 15px
 }
 .count-btn:disabled, .addProduct-btn:disabled{
     opacity: 0.5;

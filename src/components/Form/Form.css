@@ -1,13 +1,23 @@
-.shopOrderForm{
-    width: 50vw;
-    border-style: groove;
-}
-.shopOrderForm form{
+.shopOrderFormContainer{
+    font-family: "kanit";
+    width: 100%;
     display: flex;
-    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
 }
-
-/* .shopOrderForm form input{
-    width: 50%;
-    padding: 2rem;
-} */
+.shopOrderForm{
+    margin-top: 2rem;
+    box-shadow: 0px 0px 10px 0.2px #c99eed;
+    width: 20rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+fieldset{
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+}
+.shopOrderForm fieldset input{
+    width: auto
+}

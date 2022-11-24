@@ -26,7 +26,7 @@ const Provider = (props) =>{
     const deleteOne = (id) => setCart(cart.filter((prod)=>prod.id !== id))
     const calculateTotalPrice = () => cart.reduce((counter,product)=>counter+product.quantity*product.price,0)
     const calculateItemAmount = () => cart.reduce((counter,product)=>counter+product.quantity,0)
-
+    
     return(
         <CartContext.Provider value={{addToCart, cart, deleteCart, deleteOne, isInCart, findInCart, calculateItemAmount, calculateTotalPrice}}>
             {props.children}

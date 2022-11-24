@@ -14,7 +14,7 @@ const ItemCount = (props) =>{
         setCount(count-1)
     }
     const{findInCart, isInCart} = useContext(CartContext)
-    const cartProduct = findInCart(props.product.id)||true
+    const cartProduct = findInCart(props.product.id)
     return (
         <div className="card">
             
@@ -27,7 +27,10 @@ const ItemCount = (props) =>{
             {
                 isInCart(props.product.id)?
                 <button disabled={count===0} className="addProduct-btn" onClick={()=>props.onAdd(count)}>
-                    {cartProduct.quantity!==count?"Modificar":<Link to="/cart">Ir al carrito</Link>}
+                    {cartProduct.quantity!==count?
+                        "Modificar":
+                        <Link to="/cart">Ir al carrito</Link>
+                    }
                 </button>:
                 <button disabled={count===0} className="addProduct-btn" onClick={()=>props.onAdd(count)}>
                 Agregar al carrito
