@@ -5,7 +5,7 @@ import ItemDetailContainer from "./components/Products/Detail/ItemDetailContaine
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Cart from "./components/Cart/Cart";
 import ProductsMain from "./components/Products/ProductsMain";
-import EnDesarrollo from './components/EnDesarrollo'
+import Home from './components/Home/Home'
 import Form from "./components/Form/Form";
 import Provider from "./context/CartContext";
 import Informacion from "./components/Informacion/Informacion";
@@ -22,10 +22,8 @@ function App() {
           <Route path='/products/item/:id' element={<ItemDetailContainer/>}/>
           <Route path='/cart' element={<Cart/>}/>
           <Route path='/products/category/:categoryName' element={<ProductsMain/>}/>
-          <Route path="/home" element={<EnDesarrollo/>}/>
-          <Route path="" element={<EnDesarrollo/>}/>
+          <Route path="" element={<Home/>}/>
           <Route path="/info" element={<Informacion/>}/>
-          <Route path="/contact" element={<EnDesarrollo/>}/>
           <Route path ='/error' element={<h1>Error</h1>}/>{/*Crear error page*/}
           <Route path='*' element={<h1>Page not found</h1>}/>{/*Este path es para que cuando alguien mete mano en el url y este no existe te tire X componente*/}
           <Route path="/checkout" element={<Form/>}/>

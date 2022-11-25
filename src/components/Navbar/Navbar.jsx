@@ -6,17 +6,13 @@ const Navbar=()=>{
         <nav >
             <div></div>
             <ul>
-                {/* <NavLink to='/home'>INICIO</NavLink> */}
                 <NavLink to='/products/category/All'>PRODUCTOS</NavLink>
-                <Link to='/home'>
+                <Link to='/'>
                     <h1>GLKTK</h1>
                 </Link>
                 <NavLink to='/info'>INFORMACION</NavLink>
-                {/* <NavLink to='/contact'>CONTACTO</NavLink> */}
             </ul>
             <div><CartWidget/></div>
-            
-            
         </nav>
     )
 }

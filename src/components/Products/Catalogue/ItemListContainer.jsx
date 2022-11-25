@@ -45,37 +45,10 @@ const ItemListContainer = ()=>{
         </div>
         )
     }
-
     return(
-
         <div >
-           <ItemList products={products}/>   
-            
+           <ItemList products={products}/>      
         </div>
     )
 }
 export default ItemListContainer
-
-
-
-// const getProducts = () => {
-//     return new Promise((res, rej) => {
-//         const filteredProducts = productsMock.filter((prod)=>prod.category===categoryName)
-//         const prod = filteredProducts.length===0?productsMock:filteredProducts
-//         setTimeout(() => {
-//             res(prod);
-//         }, 1000);
-//     });
-// };
-// getProducts()
-//     .then((res) => {
-//         setProducts(res);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     })
-//     .finally(()=>{
-//         setLoading(false)
-//     });
-//     return ()=> setLoading(true)
-// }

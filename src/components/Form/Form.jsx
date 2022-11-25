@@ -6,118 +6,78 @@ import { addDoc, collection, documentId, getDocs, serverTimestamp, writeBatch, q
 import { db } from "../../services/firebaseConfig"
 import { Link } from "react-router-dom"
 import RingLoader from "react-spinners/RingLoader";
-import CartDetail from "../Cart/CartDetail"
-import { useEffect } from "react"
 
+// Hook form
+import {useForm} from 'react-hook-form'
+import {yupResolver} from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 const Form = ()=>{
-   
-    const [inputs, setInputs]=useState({})
-    const {cart, calculateTotalPrice, deleteCart, findInCart} = useContext(CartContext)
+    const {cart, calculateTotalPrice, deleteCart, deleteOne} = useContext(CartContext)
     const [orderId, setOrderId]= useState("")
     const [loading, setLoading]=useState(false)
-    const [divStock, setDivStock]=useState(false)
-    const [noStockProd, setNoStockProd]=useState([])
-
-
-    // Borrador e intento de validaciones
-    const initialFormData={
-        name: '',
-        lastName: '',
-        email: '', 
-        repeatedEmail: '',
-        address: ''
-    }
-
-    // // check errors
-    // useEffect(()=>{
-        
-    // })
-    // Fin del borrador
-    const inputsHandler =(e)=>{
-        setInputs({...inputs, [`${e.target.name}`]: `${e.target.value}` })
-        console.log(inputs)
-    }
-
     
-    const handleSubmit= async(e)=>{
-        e.preventDefault()
+    const schema = yup.object().shape({
+        name: yup.string("Solo se aceptan letras").required("Este campo es obligatorio") ,
+        lastName: yup.string("Solo se aceptan letras").required("Este campo es obligatorio"),
+        email: yup.string("Solo se aceptan letras").email("Ingrese un email valido").required("Este campo es obligatorio"), 
+        repeatedEmail: yup.string("Solo se aceptan letras").oneOf([yup.ref("email"),null]),
+        address: yup.string("Solo se aceptan letras").min(8,"Minimo 8 caracteres").required("Este campo es obligatorio"),
+        cellphone:yup.number().required("Este campo es obligatorio")
+    })
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    })
+
+    const onSubmit=async (data)=>{
         setLoading(true)
-        
         try {
             const order ={
-                buyer: inputs.name+" "+inputs.lastName,
+                buyer: data.name+" "+data.lastName,
                 items: cart,
                 total: calculateTotalPrice(),
                 date: serverTimestamp(),
-                email:inputs.email,
-                cellphone: inputs.cellphone,
-                address: inputs.address,
+                email:data.email,
+                cellphone: data.cellphone,
+                address: data.address,
             }
             const ids = cart.map((prod)=> prod.id)
-            
             const productsRef =collection(db, "products")
             const FSProducts= await getDocs(
                 query(productsRef, where(documentId(), "in", ids))
             );
-            
             const {docs}= FSProducts
-            const outOfStock =[]
+            let outOfStock =[]
             const batch = writeBatch(db)
-
             docs.forEach((doc)=>{
                 const dataDoc = doc.data()
                 const stockDB = dataDoc.stock
                 const cartProducts = cart.find((prod)=>prod.id===doc.id)
                 const productQuantity = cartProducts?.quantity
-
                 if(stockDB >= productQuantity){
                     batch.update(doc.ref, {stock: stockDB-productQuantity})
                 }else{
                     outOfStock.push({id:doc.id, ...dataDoc})
-                    console.log(dataDoc)
-                    setNoStockProd(outOfStock)
-                    
                 };
             });
             if(outOfStock.length === 0){
                 batch.commit()
-
                 const ordersCollection = collection(db, "orders")
                 const addedOrder = await addDoc(ordersCollection,order)
-                
                 setOrderId(addedOrder.id)
                 deleteCart()
-                
             }else{
-                console.log("no hay stock de algun producto", noStockProd)
-                // Hacer un map del array outof stcok, decirle cual es. Preguntarle si desea continuar con la compra. Hacer una funcion que saque el prod del cart que no haya stock
-                setDivStock(true)
-                
+                outOfStock.map((prod)=>deleteOne(prod.id))
+                outOfStock=[]
+                alert("Nos quedamos sin stock de alguno de los productos. Se han eliminado de su carrito. Vuelva a realizar la compra")
             }
         } catch (error) {
             console.log(error)
-
         }finally{
             setLoading(false)
         }
     }
     
-
-    if(divStock){
-        return(
-            <div>
-                <h2 style={{textAlign:"center"}}>No hay stock de los siguientes productos</h2>
-                {
-                noStockProd?.map((prod)=>{
-                    const ref = findInCart(prod.id)
-                    return <CartDetail cartProduct={{...prod, quantity: ref.quantity}} key={prod.id}/>
-                })
-                }
-            </div>
-        )
-    }
-
     if(orderId){
         return(
             <div>
@@ -128,9 +88,9 @@ const Form = ()=>{
                     </button>
                 </Link>
             </div>
-
         )
     }
+
     if(loading){
         return(
         <div style={{width:"100vw", height:"80vh", display:"flex",justifyContent:"center", alignItems:"center"}} >
@@ -142,37 +102,75 @@ const Form = ()=>{
     return(
         <div className="shopOrderFormContainer">
             
-            <form className="shopOrderForm" onSubmit={handleSubmit} action="">
-                <fieldset className="">
+            <form className="shopOrderForm" onSubmit={handleSubmit(onSubmit)}>
+                
+                <fieldset>
                     <label htmlFor="name">Nombre</label>
-                    <input value={inputs.name} onChange={inputsHandler} type="text" name="name" placeholder="Nombre"/>
+                    <input 
+                            name= "name"
+                            type="text" 
+                            {...register("name")}
+                            autoComplete="off"
+                            placeholder="Nombre"/>
+                    <p>{errors.name?.message}</p>
                 </fieldset>
-                <fieldset className="">
+                <fieldset >
                     <label htmlFor="lastName">Apellido</label>
-                    <input value={inputs.lastName} onChange={inputsHandler} type="text" name="lastName" placeholder="Apellido" />
+                    <input 
+                            name= "lastName"
+                            type="text"
+                            {...register("lastName")}
+                            autoComplete="off"
+                            placeholder="Apellido" />
+                            <p>{errors.lastName?.message}</p>
                 </fieldset>
 
-                <fieldset className="">
+                <fieldset>
                     <label htmlFor="email">E-mail</label>
-                    <input value={inputs.email} onChange={inputsHandler}   type="email" name="email" placeholder="E-Mail" />
+                    <input 
+                            name= "email"
+                            type="email"
+                            {...register("email")}
+                            autoComplete="off"
+                            placeholder="E-Mail" />
+                    <p>{errors.email?.message}</p>    
                 </fieldset>
-                <fieldset className="">
+                <fieldset >
                     <label htmlFor="repeatedEmail">Repetir E-mail</label>
-                    <input value={inputs.repeatedEmail} onChange={inputsHandler}  type="email" name="repeatedEmail" placeholder="Repetir E-mail" />
+                    <input 
+
+                            name= "repeatedEmail"
+                            type="email"
+                            {...register("repeatedEmail")}
+                            autoComplete="off"
+                            placeholder="Repetir E-mail" />
+                    <p>{errors.repeatedEmail?.message&&"Deben coincidir los emails"}</p>    
                 </fieldset>
-                <fieldset className="">
+                <fieldset >
                     <label htmlFor="address">Dirección</label>
-                    <input value={inputs.address} onChange={inputsHandler}  type="text" name="address" placeholder="Dirección" />
+                    <input 
+                            name="address"
+                            type="text"
+                            {...register("address")}
+                            autoComplete="off"
+                            placeholder="Dirección" />
+                    <p>{errors.address?.message}</p>    
                 </fieldset>
-                <fieldset className="">
+                <fieldset >
                     <label htmlFor="cellphone">Celular</label>
-                    <input value={inputs.cellphone} onChange={inputsHandler} type="tel" name="cellphone" placeholder="Celular" />
+                    <input 
+                            name="cellphone"
+                            type="text"
+                            {...register("cellphone")}
+                            autoComplete="off"
+                            placeholder="Celular" />
+                    <p>{errors.cellphone?.type==="typeError"?
+                    "Ingrese un numero valido":
+                    errors.cellphone?.message}</p>    
                 </fieldset>
                 <div >
-                    <button className="checkout-btn">Enviar</button>
-                    
+                    <button  className="checkout-btn">Enviar</button>
                 </div>
-                
             </form>
         </div>
     )

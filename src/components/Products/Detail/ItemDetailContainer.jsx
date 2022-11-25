@@ -43,23 +43,3 @@ const ItemDetailContainer = () => {
 }
 
 export default ItemDetailContainer
-
-
-// const getSingleProduct = () => {
-//     return new Promise((res, rej) => {
-//         const productMock = productsMock.find((prod)=>prod.id===parseInt(id))        
-//         setTimeout(() => {
-//             res(productMock);
-//         }, 1000);
-//     });
-// };
-// getSingleProduct()
-//     .then((res) => {
-//         setProduct(res);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     })
-//     .finally(()=>{
-//         setLoading(false)});
-//     return ()=> setLoading(true)

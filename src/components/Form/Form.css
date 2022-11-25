@@ -17,7 +17,13 @@ fieldset{
     border-style: none;
     display: flex;
     flex-direction: column;
+    
 }
 .shopOrderForm fieldset input{
     width: auto
+}
+
+form p{
+    /* border-style: groove; */
+    margin: 0
 }
