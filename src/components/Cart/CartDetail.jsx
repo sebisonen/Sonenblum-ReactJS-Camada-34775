@@ -10,11 +10,6 @@ const CartDetail=({cartProduct})=>{
             <img src={cartProduct.img} alt={cartProduct.title} />
             <p>{cartProduct.title}</p>
             <p >Precio: {`$${cartProduct.price}`}</p>
-            {/* <div>
-                <label for="quantity">Cantidad:</label>
-                <input type="number" id="quantity" onclick={()=>} value={cartProduct.quantity} name="quantity" min="1" max={cartProduct.stock}></input>
-            </div> */}
-            {/* <Count count={count}>Cantidad</Count> */}
             <p >Cantidad: {cartProduct.quantity}</p>
             <p>Subtotal: ${cartProduct.quantity*cartProduct.price}</p>
             <button onClick={()=>deleteOne(cartProduct.id)}>Eliminar</button>

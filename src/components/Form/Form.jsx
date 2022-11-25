@@ -6,60 +6,42 @@ import { addDoc, collection, documentId, getDocs, serverTimestamp, writeBatch, q
 import { db } from "../../services/firebaseConfig"
 import { Link } from "react-router-dom"
 import RingLoader from "react-spinners/RingLoader";
+import CartDetail from "../Cart/CartDetail"
+import { useEffect } from "react"
+
 
 const Form = ()=>{
    
     const [inputs, setInputs]=useState({})
-    const {cart, calculateTotalPrice, deleteCart} = useContext(CartContext)
+    const {cart, calculateTotalPrice, deleteCart, findInCart} = useContext(CartContext)
     const [orderId, setOrderId]= useState("")
     const [loading, setLoading]=useState(false)
-    // const [errors, setErrors]=useState({})
-    // const [initialValues, setInitialValues]=useState({})
-    
-    // const BORRADOR = ()={
-    // const [validation, setValidation]= useState(false)
-    // const [email, setEmail]=useState("")
+    const [divStock, setDivStock]=useState(false)
+    const [noStockProd, setNoStockProd]=useState([])
 
-    // const mailValidation=()=>{
-    //         const {email, repeatedEmail}=inputs||true
-    // email===repeatedEmail&&email!==undefined&&email!==""&&repeatedEmail!==undefined&&repeatedEmail!==""?
-    // setValidation(true):
-    // setValidation(false)
-    // return validation
-    // }
 
-    // const emailHandler= (e)=>{
-    //     setEmail(e.target.value)
-    //     console.log(email)
-    // }
-    // }
-    
-    //  const validate =(values)=>{
-    //     const errors={...inputs};
-    //     const emailFormat=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    //     for (let input in errors){
-    //         // input===""||input==undefined?
-    //         errors[input]="Este campo no puede quedar vacío"
-    //         // :errors[input]=""
-    //         // errors[Object.keys(inputs)[input]]=="Este campo no puede quedar vacío":
-    //         // errors[input]
-            
+    // Borrador e intento de validaciones
+    const initialFormData={
+        name: '',
+        lastName: '',
+        email: '', 
+        repeatedEmail: '',
+        address: ''
+    }
 
-    //     }
-    //     console.log(Object.keys(inputs))
-    //     console.log(errors)
-    //     return errors
-    //  }
+    // // check errors
+    // useEffect(()=>{
+        
+    // })
+    // Fin del borrador
     const inputsHandler =(e)=>{
         setInputs({...inputs, [`${e.target.name}`]: `${e.target.value}` })
-        // inputs[e.target.name] = e.target.value
-        // setInputs(inputs)
-        // console.log(inputs)
+        console.log(inputs)
     }
+
+    
     const handleSubmit= async(e)=>{
         e.preventDefault()
-        
-        // setErrors(validate(inputs))
         setLoading(true)
         
         try {
@@ -93,6 +75,9 @@ const Form = ()=>{
                     batch.update(doc.ref, {stock: stockDB-productQuantity})
                 }else{
                     outOfStock.push({id:doc.id, ...dataDoc})
+                    console.log(dataDoc)
+                    setNoStockProd(outOfStock)
+                    
                 };
             });
             if(outOfStock.length === 0){
@@ -105,19 +90,34 @@ const Form = ()=>{
                 deleteCart()
                 
             }else{
-                console.log("no hay stock de algun producto", outOfStock)
+                console.log("no hay stock de algun producto", noStockProd)
                 // Hacer un map del array outof stcok, decirle cual es. Preguntarle si desea continuar con la compra. Hacer una funcion que saque el prod del cart que no haya stock
-
+                setDivStock(true)
+                
             }
         } catch (error) {
             console.log(error)
+
         }finally{
             setLoading(false)
         }
     }
     
 
-    
+    if(divStock){
+        return(
+            <div>
+                <h2 style={{textAlign:"center"}}>No hay stock de los siguientes productos</h2>
+                {
+                noStockProd?.map((prod)=>{
+                    const ref = findInCart(prod.id)
+                    return <CartDetail cartProduct={{...prod, quantity: ref.quantity}} key={prod.id}/>
+                })
+                }
+            </div>
+        )
+    }
+
     if(orderId){
         return(
             <div>
