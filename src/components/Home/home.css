@@ -5,13 +5,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(128, 255, 0, 0.959); */
+
 }
 
 .home button{
     
     cursor:pointer;
-    /* transform: translate(-50%, -50%); */
     font-family: 'Libre Franklin';
     color: rgba(0, 0, 0, 0.788);
     background-color: rgba(128, 255, 0, 0);

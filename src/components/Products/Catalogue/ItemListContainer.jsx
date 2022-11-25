@@ -1,5 +1,4 @@
 import ItemList from "./ItemList"
-// import { productsMock } from "../../../mock-products/mock-products";
 import {useState, useEffect} from 'react'
 import { useParams } from "react-router-dom";
 import RingLoader from "react-spinners/RingLoader";

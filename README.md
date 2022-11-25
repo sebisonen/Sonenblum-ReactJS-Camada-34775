@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# GLKTK. Ecommerce de ropa
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+GLKTK es un comercio de indumentaria, que vende ropa femenina. Este proyecto fue creado en el curso de ReactJs de coderHouse. Está enteramente programado con React y utiliza FireBase como base de datos.
 
-## Available Scripts
+## Librerias utilizadas
 
-In the project directory, you can run:
+- [Firebase](https://firebase.google.com/ "Firebase"): utilizada como BBDD para los productos, categorias de productos y ordenes de compra.
+- [React-router-dom](https://reactrouter.com/ "react-router-dom"): utilizada para facilitar la navegabilidad propia de la web app.
+- [Fortawesome](https://fontawesome.com/docs/web/use-with/react// "fortawesome"): libreria de iconos. De acá se usa el icono del carrito.
+- [Hook-form-react](https://react-hook-form.com/ "Hook-form-react"): utilizada para hacer manejar los inputs y el submit del form
+- [Yup](https://www.npmjs.com/package/yup "Yup"): utilizada para hacer las validaciones de los datos del form mencionado en el punto anterior.
+- [React-spinners](https://www.npmjs.com/package/react-spinners "React-spinners"): utilizada para obtener el icono del spinner que se visualiza mientras hay pedidos a la BBDD.
+
+## Funcionalidades
+
+- Navegar por las distintas secciones de la página, como también por las distintas categorías de ropa del ecommerce.
+- Sumar distintas unidades al carrito de compras.
+- Eliminar por unidades desde el carrito de compra.
+- Vaciar el carrito de compras.
+- Validar datos del formulario de compra.
+- Creacion de orden de compra con su ID unico.
+
+## Instalacion del proyecto
+
+1. Clonar el repositorio en la ubicacion deseada.
+
+### `git clone https://github.com/sebisonen/Sonenblum-ReactJS-Camada-34775.git`
+
+2. Abrir en un editor de código. Instalar todas las dependencias:
+
+### `npm install`
+
+3. Corro el proyecto
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

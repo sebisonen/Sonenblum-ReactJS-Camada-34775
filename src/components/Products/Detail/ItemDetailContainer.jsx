@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import ItemDetail from './ItemDetail';
-// import { productsMock } from '../../../mock-products/mock-products';
 import {useParams} from 'react-router-dom'
 import RingLoader from "react-spinners/RingLoader";
 import { doc, collection, getDoc } from 'firebase/firestore';
